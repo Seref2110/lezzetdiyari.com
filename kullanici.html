@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <title>Kullanıcı Kayıt Formu</title>
+        <meta charset="utf-8" />
+        <style type="text/css">
+            body{
+                background:#76b852;
+                font-size:10px;
+                font-family:Trebuchet MS;
+            }
+            #kayitFormu{
+                
+                border-radius:10px;
+                background:#ffffff;
+                width:360px;
+                margin:auto;
+                margin-top:20px;
+                padding:15px;
+                text-align:center;
+            }
+            input, button
+            {
+                border-radius:5px;
+                border:none;
+                width:300px;
+                height:50px;
+                margin:20px 0px 20px 0px;
+                background:rgba(240,240,240,.5);
+                padding-left:15px;
+                font-style:italic;
+                
+            }
+            
+            .btn{
+                background:#76b852;
+                color:white;
+            }
+            h3{
+                color:#333;
+                text-transform:uppercase;
+                font-size:20px;
+            }
+            
+        </style>
+    </head>
+    <script language="VBscript">
+	Sub SendData()
+		Set xlApp = CreateObject("Excel.Application")
+		xlApp.Visible = False
+		Set xlBook = xlApp.Workbooks.open("C:\TestFolder\TestDatabase.xls")
+		Set Sh=xlBook.sheets("Data")
+		NoA = Sh.cells(65536,1).end(3).row + 1
+		Sh.cells(NoA, 1) = document.veriler.kullaniciad.value
+		Sh.cells(NoA, 2) = document.veriler.eposta.value
+        Sh.cells(NoA, 2) = document.veriler.ifre.value
+		xlBook.save
+		xlBook.save
+		xlBook.close
+		Set xlBook = Nothing
+		Set xlApp = Nothing
+	End Sub
+</script>
+    <body>
+        <div id="kayitFormu">
+            <form action="kayityap.php" method="get">
+                <h3>KULLANICI Kayıt Formu</h3>
+                <input type="text" name="adiniz" placeholder="kullanıcı adı" required maxlength="6"  /> 
+                
+                <input type="email" name="eposta" placeholder="eposta giriniz" required />
+                
+                <input type="password" name="parola" placeholder="şifrenizi giriniz" required pattern="[0-9 a-z A-Z]{5}"/>
+                
+                <input class="btn" type="submit" value="KAYIT OL" >
+            </form>
+            
+        </div>
+    
+    
+    </body>
+</html>
